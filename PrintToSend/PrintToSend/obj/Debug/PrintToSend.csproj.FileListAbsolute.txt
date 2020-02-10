@@ -1,0 +1,16 @@
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\bin\Debug\NLog.config
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\bin\Debug\PrintToSend.exe.config
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\bin\Debug\PrintToSend.exe
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\bin\Debug\PrintToSend.pdb
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\bin\Debug\NLog.dll
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\bin\Debug\SimpleWifi.dll
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\bin\Debug\WhatsAppApi.dll
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\bin\Debug\NLog.xml
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\obj\Debug\PrintToSend.csprojAssemblyReference.cache
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\obj\Debug\PrintToSend.Main.resources
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\obj\Debug\PrintToSend.Properties.Resources.resources
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\obj\Debug\PrintToSend.csproj.GenerateResource.cache
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\obj\Debug\PrintToSend.csproj.CoreCompileInputs.cache
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\obj\Debug\PrintToSend.csproj.CopyComplete
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\obj\Debug\PrintToSend.exe
+C:\Sushil\Projects\Workspace\WindowsDesktopApps\PrintToSend\PrintToSend\obj\Debug\PrintToSend.pdb
