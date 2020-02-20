@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WhatsAppApi;
 using WhatsAppApi.Helper;
 using NLog;
@@ -11,7 +8,7 @@ namespace PrintToSend
     class WhatsAppLinking
     {
         //NLog recommends using a static variable for the logger object
-        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger(); 
+        private static Logger logger = LogManager.GetCurrentClassLogger(); 
         
         WhatsApp whatsApp;
         AppCustomer selectedCustomer;
@@ -22,14 +19,16 @@ namespace PrintToSend
             appOwner = new AppOwner();
             selectedCustomer = new AppCustomer();
             getAppOwnerDetails();
-            Connect();
+            //InitWhatsApp();
+            logger.Debug("In WhatsAppLinking");
         }
-        public void Connect()
+        public void InitWhatsApp()
         {
             if (!string.IsNullOrEmpty(appOwner.Number) && !string.IsNullOrEmpty(appOwner.IMEI) && !string.IsNullOrEmpty(appOwner.Name))
             {
-                whatsApp = new WhatsApp(appOwner.Number, appOwner.IMEI, appOwner.Name, true, false);
-                //whatsApp.Connect();
+                whatsApp = new WhatsApp(appOwner.Number, appOwner.IMEI, appOwner.Name, true, true);
+                
+                whatsApp.Connect();
             }
         }
         private void getAppOwnerDetails()
@@ -52,29 +51,40 @@ namespace PrintToSend
             try
             {
                 //Do something
-            
+                whatsApp = new WhatsApp(appOwner.Number, appOwner.IMEI, appOwner.Name, true, true);
+
                 whatsApp.OnConnectSuccess += () =>
                 {
-                    //whatsApp.OnLoginSuccess += (phoneNumber, data) =>
-                    //{
-                        logger.Debug(whatsApp);
-                        whatsApp.SendMessage(selectedCustomer.Number, msg);
-                        whatsApp.SendClose();
-
-                        //TODO: gravar log
-                    //};
-
-                    //whatsApp.OnLoginFailed += (data) =>
-                   // {
-                        //TODO: gravar log
-                     //   logger.Debug(data);
-                    //};
-                    //logger.Debug(whatsApp);
-                    //whatsApp.Login();
+                    logger.Debug(whatsApp.ConnectionStatus.ToString());
+                    try
+                    {
+                        whatsApp.OnLoginSuccess += (phoneNumber, data) =>
+                        {
+                            logger.Debug("Logged In", whatsApp);
+                            whatsApp.SendMessage(selectedCustomer.Number, msg);
+                            whatsApp.SendClose();
+                            //TODO: gravar log
+                        };
+                        whatsApp.OnLoginFailed += (data) =>
+                        {
+                            //TODO: gravar log
+                            logger.Debug("Login Failed", data.Length);
+                            //};
+                        };
+                        logger.Debug("Message sent: {0} to {1}", msg, selectedCustomer.Number);
+                        whatsApp.Login();
+                    }
+                    catch (Exception ex)
+                    {
+                        //Exceptions are typically logged at the ERROR level
+                        logger.Error(ex, "Something bad happened");
+                    }
+                    //whatsApp.OnConnectFailed += whatsApp_OnConnectFailed;
                 };
-
-                //whatsApp.OnConnectFailed += whatsApp_OnConnectFailed;
-
+                whatsApp.OnConnectFailed += (ex) =>
+                {
+                    logger.Debug(ex.StackTrace);
+                };
                 whatsApp.Connect();
             }
             catch (Exception ex)
