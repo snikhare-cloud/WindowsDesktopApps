@@ -67,6 +67,8 @@
     <Compile Include="FaceRec.Designer.cs">
       <DependentUpon>FaceRec.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrameCapturing.cs" />
+    <Compile Include="FrameProcessing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FaceRec.resx">
