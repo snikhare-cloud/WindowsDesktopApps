@@ -12,39 +12,36 @@ namespace FaceRec
     class FrameCapturing
     {
         private VideoCapture _Capture;
-        private Mat _Frame;
-        private Queue<Bitmap> imageSequence;
-        protected virtual void OnFirstFrameAdded(EventArgs e)
-        {
-            FirstFrameAdded?.Invoke(this, e);
-        }
 
-        public event EventHandler FirstFrameAdded;
-        public FrameCapturing(Queue<Bitmap> imageSequence)
+        public event EventHandler<OnFrameReadyToDisplayEventArgs> frameReadyToDisplay;
+        protected virtual void OnFrameReadyToDisplay(OnFrameReadyToDisplayEventArgs e)
+        {
+            EventHandler< OnFrameReadyToDisplayEventArgs> handler = frameReadyToDisplay;
+            handler?.Invoke(this, e);
+        }
+        //public static Mat _Frame { get; set; }
+
+        public FrameCapturing()
         {
             _Capture = new VideoCapture(0);
-            this.imageSequence = imageSequence;
         }
         private void GetCameraFrame(object sender, EventArgs e)
         {
+            Mat localFrame = new Mat();
             if (_Capture != null && _Capture.Ptr != IntPtr.Zero && _Capture.IsOpened)
             {
-
-                if (this.imageSequence.Count < 200)
-                {
-                    _Capture.Retrieve(_Frame, 0);
-                    this.imageSequence.Enqueue(_Frame.Bitmap);
-                }
-
-                if (this.imageSequence.Count > 1 && this.imageSequence.Count <= 2)
-                    OnFirstFrameAdded(EventArgs.Empty);
+                _Capture.Retrieve(localFrame, 0);
+                //_Frame = localFrame;
+                OnFrameReadyToDisplayEventArgs args = new OnFrameReadyToDisplayEventArgs();
+                args.frame = localFrame;
+                OnFrameReadyToDisplay(args);
             }
         }
         public void Begin()
         {
-            if (_Capture == null) _Capture = new VideoCapture(0);            
+            if (_Capture == null) _Capture = new VideoCapture(0);
             _Capture.ImageGrabbed += GetCameraFrame;
-            _Frame = new Mat();
+            //_Frame = new Mat();
             Mat mat = new Mat();
             try
             {
@@ -69,6 +66,9 @@ namespace FaceRec
         }
     }
 
-
+    public class OnFrameReadyToDisplayEventArgs : EventArgs
+    {
+        public Mat frame { get; set; }
+    }
 
 }

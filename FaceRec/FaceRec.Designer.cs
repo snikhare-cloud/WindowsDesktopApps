@@ -37,11 +37,10 @@
             this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DisplayStartMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DisplayStopMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DetectionFaceMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.detectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.faceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bodyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lowerBodyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eyesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.CamInput)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -51,7 +50,7 @@
             // 
             this.CamInput.Location = new System.Drawing.Point(12, 71);
             this.CamInput.Name = "CamInput";
-            this.CamInput.Size = new System.Drawing.Size(1155, 400);
+            this.CamInput.Size = new System.Drawing.Size(1155, 640);
             this.CamInput.TabIndex = 0;
             this.CamInput.TabStop = false;
             // 
@@ -62,7 +61,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CameraMenuItem,
             this.displayToolStripMenuItem,
-            this.DetectionFaceMenuItem});
+            this.detectToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1179, 33);
@@ -82,21 +81,21 @@
             // CameraStartMenuItem
             // 
             this.CameraStartMenuItem.Name = "CameraStartMenuItem";
-            this.CameraStartMenuItem.Size = new System.Drawing.Size(159, 34);
+            this.CameraStartMenuItem.Size = new System.Drawing.Size(270, 34);
             this.CameraStartMenuItem.Text = "Start";
             this.CameraStartMenuItem.Click += new System.EventHandler(this.CameraStartMenuItem_Click);
             // 
             // CameraStopMenuItem
             // 
             this.CameraStopMenuItem.Name = "CameraStopMenuItem";
-            this.CameraStopMenuItem.Size = new System.Drawing.Size(159, 34);
+            this.CameraStopMenuItem.Size = new System.Drawing.Size(270, 34);
             this.CameraStopMenuItem.Text = "Stop";
             this.CameraStopMenuItem.Click += new System.EventHandler(this.CameraStopMenuItem_Click);
             // 
             // CameraPauseMenuItem
             // 
             this.CameraPauseMenuItem.Name = "CameraPauseMenuItem";
-            this.CameraPauseMenuItem.Size = new System.Drawing.Size(159, 34);
+            this.CameraPauseMenuItem.Size = new System.Drawing.Size(270, 34);
             this.CameraPauseMenuItem.Text = "Pause";
             // 
             // displayToolStripMenuItem
@@ -111,59 +110,59 @@
             // DisplayStartMenuItem
             // 
             this.DisplayStartMenuItem.Name = "DisplayStartMenuItem";
-            this.DisplayStartMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.DisplayStartMenuItem.Size = new System.Drawing.Size(151, 34);
             this.DisplayStartMenuItem.Text = "Start";
             this.DisplayStartMenuItem.Click += new System.EventHandler(this.DisplayStartMenuItem_Click);
             // 
             // DisplayStopMenuItem
             // 
             this.DisplayStopMenuItem.Name = "DisplayStopMenuItem";
-            this.DisplayStopMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.DisplayStopMenuItem.Size = new System.Drawing.Size(151, 34);
             this.DisplayStopMenuItem.Text = "Stop";
             this.DisplayStopMenuItem.Click += new System.EventHandler(this.DisplayStopMenuItem_Click);
             // 
-            // DetectionFaceMenuItem
+            // detectToolStripMenuItem
             // 
-            this.DetectionFaceMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startToolStripMenuItem2,
-            this.stopToolStripMenuItem2,
+            this.detectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.faceToolStripMenuItem,
+            this.bodyToolStripMenuItem,
             this.lowerBodyToolStripMenuItem,
-            this.eyesToolStripMenuItem,
             this.smileToolStripMenuItem});
-            this.DetectionFaceMenuItem.Name = "DetectionFaceMenuItem";
-            this.DetectionFaceMenuItem.Size = new System.Drawing.Size(104, 29);
-            this.DetectionFaceMenuItem.Text = "Detection";
+            this.detectToolStripMenuItem.Name = "detectToolStripMenuItem";
+            this.detectToolStripMenuItem.Size = new System.Drawing.Size(79, 29);
+            this.detectToolStripMenuItem.Text = "Detect";
             // 
-            // startToolStripMenuItem2
+            // faceToolStripMenuItem
             // 
-            this.startToolStripMenuItem2.Name = "startToolStripMenuItem2";
-            this.startToolStripMenuItem2.Size = new System.Drawing.Size(208, 34);
-            this.startToolStripMenuItem2.Text = "Face";
-            this.startToolStripMenuItem2.Click += new System.EventHandler(this.startToolStripMenuItem2_Click);
+            this.faceToolStripMenuItem.CheckOnClick = true;
+            this.faceToolStripMenuItem.Name = "faceToolStripMenuItem";
+            this.faceToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.faceToolStripMenuItem.Text = "Face";
+            this.faceToolStripMenuItem.Click += new System.EventHandler(this.faceToolStripMenuItem_Click);
             // 
-            // stopToolStripMenuItem2
+            // bodyToolStripMenuItem
             // 
-            this.stopToolStripMenuItem2.Name = "stopToolStripMenuItem2";
-            this.stopToolStripMenuItem2.Size = new System.Drawing.Size(208, 34);
-            this.stopToolStripMenuItem2.Text = "Body";
+            this.bodyToolStripMenuItem.CheckOnClick = true;
+            this.bodyToolStripMenuItem.Name = "bodyToolStripMenuItem";
+            this.bodyToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.bodyToolStripMenuItem.Text = "Body";
+            this.bodyToolStripMenuItem.Click += new System.EventHandler(this.bodyToolStripMenuItem_Click);
             // 
             // lowerBodyToolStripMenuItem
             // 
+            this.lowerBodyToolStripMenuItem.CheckOnClick = true;
             this.lowerBodyToolStripMenuItem.Name = "lowerBodyToolStripMenuItem";
-            this.lowerBodyToolStripMenuItem.Size = new System.Drawing.Size(208, 34);
-            this.lowerBodyToolStripMenuItem.Text = "Lower body";
-            // 
-            // eyesToolStripMenuItem
-            // 
-            this.eyesToolStripMenuItem.Name = "eyesToolStripMenuItem";
-            this.eyesToolStripMenuItem.Size = new System.Drawing.Size(208, 34);
-            this.eyesToolStripMenuItem.Text = "Eyes";
+            this.lowerBodyToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.lowerBodyToolStripMenuItem.Text = "Lower Body";
+            this.lowerBodyToolStripMenuItem.Click += new System.EventHandler(this.lowerBodyToolStripMenuItem_Click);
             // 
             // smileToolStripMenuItem
             // 
+            this.smileToolStripMenuItem.CheckOnClick = true;
             this.smileToolStripMenuItem.Name = "smileToolStripMenuItem";
-            this.smileToolStripMenuItem.Size = new System.Drawing.Size(208, 34);
+            this.smileToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.smileToolStripMenuItem.Text = "Smile";
+            this.smileToolStripMenuItem.Click += new System.EventHandler(this.smileToolStripMenuItem_Click);
             // 
             // FaceRec
             // 
@@ -194,11 +193,10 @@
         private System.Windows.Forms.ToolStripMenuItem displayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DisplayStartMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DisplayStopMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem DetectionFaceMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem detectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem faceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bodyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lowerBodyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eyesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem smileToolStripMenuItem;
     }
 }

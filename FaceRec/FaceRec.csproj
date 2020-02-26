@@ -97,6 +97,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="xml\haarcascade_eye.xml" />
+    <Content Include="xml\haarcascade_frontalface_alt_tree.xml" />
+    <Content Include="xml\haarcascade_lowerbody.xml" />
+    <Content Include="xml\haarcascade_smile.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Emgu.CV.3.2.0.2721\build\Emgu.CV.targets" Condition="Exists('packages\Emgu.CV.3.2.0.2721\build\Emgu.CV.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
