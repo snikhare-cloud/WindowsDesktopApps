@@ -1,0 +1,12 @@
+diff a/FaceRec/FaceRec.cs b/FaceRec/FaceRec.cs	(rejected hunks)
+@@ -24,10 +24,8 @@
+             InitializeComponent();
+             //imageSequence = new Queue<Image<Bgr, byte>>();
+         }
+-
+         private void CameraStartMenuItem_Click(object sender, EventArgs e)
+         {
+-
+             frameProcessing = new FrameProcessing();
+             frameCapturing = new FrameCapturing();
+             frames = new ConcurrentQueue<Mat>();

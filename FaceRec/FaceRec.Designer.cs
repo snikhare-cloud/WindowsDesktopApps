@@ -42,12 +42,16 @@
             this.bodyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lowerBodyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DetectionBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.CamInput)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DetectionBox)).BeginInit();
             this.SuspendLayout();
             // 
             // CamInput
             // 
+            this.CamInput.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.CamInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CamInput.Location = new System.Drawing.Point(12, 71);
             this.CamInput.Name = "CamInput";
             this.CamInput.Size = new System.Drawing.Size(1155, 640);
@@ -81,21 +85,21 @@
             // CameraStartMenuItem
             // 
             this.CameraStartMenuItem.Name = "CameraStartMenuItem";
-            this.CameraStartMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.CameraStartMenuItem.Size = new System.Drawing.Size(159, 34);
             this.CameraStartMenuItem.Text = "Start";
             this.CameraStartMenuItem.Click += new System.EventHandler(this.CameraStartMenuItem_Click);
             // 
             // CameraStopMenuItem
             // 
             this.CameraStopMenuItem.Name = "CameraStopMenuItem";
-            this.CameraStopMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.CameraStopMenuItem.Size = new System.Drawing.Size(159, 34);
             this.CameraStopMenuItem.Text = "Stop";
             this.CameraStopMenuItem.Click += new System.EventHandler(this.CameraStopMenuItem_Click);
             // 
             // CameraPauseMenuItem
             // 
             this.CameraPauseMenuItem.Name = "CameraPauseMenuItem";
-            this.CameraPauseMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.CameraPauseMenuItem.Size = new System.Drawing.Size(159, 34);
             this.CameraPauseMenuItem.Text = "Pause";
             // 
             // displayToolStripMenuItem
@@ -164,11 +168,23 @@
             this.smileToolStripMenuItem.Text = "Smile";
             this.smileToolStripMenuItem.Click += new System.EventHandler(this.smileToolStripMenuItem_Click);
             // 
+            // DetectionBox
+            // 
+            this.DetectionBox.BackColor = System.Drawing.Color.Transparent;
+            this.DetectionBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.DetectionBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DetectionBox.Location = new System.Drawing.Point(42, 98);
+            this.DetectionBox.Name = "DetectionBox";
+            this.DetectionBox.Size = new System.Drawing.Size(1097, 595);
+            this.DetectionBox.TabIndex = 2;
+            this.DetectionBox.TabStop = false;
+            // 
             // FaceRec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1179, 723);
+            this.Controls.Add(this.DetectionBox);
             this.Controls.Add(this.CamInput);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -177,6 +193,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.CamInput)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DetectionBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,6 +215,7 @@
         private System.Windows.Forms.ToolStripMenuItem bodyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lowerBodyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem smileToolStripMenuItem;
+        private System.Windows.Forms.PictureBox DetectionBox;
     }
 }
 

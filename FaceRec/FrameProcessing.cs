@@ -18,7 +18,7 @@ namespace FaceRec
             EventHandler<OnDetectionReadyToDisplayEventArgs> handler = detectionReadyToDisplay;
             handler?.Invoke(this, e);
         }
-        public async Task<Rectangle[]> DetectHaar(Mat frame)
+        public Rectangle[] DetectHaar(Mat frame)
         {
             try
             {
@@ -28,12 +28,12 @@ namespace FaceRec
                 //var imageGray = processingImage.Convert<Gray, byte>().Clone();
                 var imageGray =  frame.ToImage<Gray, byte>().Clone();
                 Rectangle[] faces =  faceClassifier.DetectMultiScale(imageGray, 1.1, 4);
-                //foreach (var face in faces)
-                //{
-                //    processingImage.Draw(face, new Bgr(100, 100, 100), 1);
-                //}
+                foreach (var face in faces)
+                {
+                    frame.ToImage<Bgr,byte>().Draw(face, new Bgr(255, 187, 30), 1);
+                }
                 //return processingImage.Bitmap;
-                await delay();
+                //await delay();
                 return  faces;
             }
             catch (Exception)
@@ -41,7 +41,6 @@ namespace FaceRec
                 throw;
             }
         }
-
         private Task delay()
         {
             throw new NotImplementedException();
