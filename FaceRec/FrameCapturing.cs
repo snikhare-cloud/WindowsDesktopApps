@@ -12,7 +12,6 @@ namespace FaceRec
     class FrameCapturing
     {
         private VideoCapture _Capture;
-
         public event EventHandler<OnFrameReadyToDisplayEventArgs> frameReadyToDisplay;
         protected virtual void OnFrameReadyToDisplay(OnFrameReadyToDisplayEventArgs e)
         {
@@ -33,6 +32,7 @@ namespace FaceRec
                 _Capture.Retrieve(localFrame, 0);
                 //_Frame = localFrame;
                 OnFrameReadyToDisplayEventArgs args = new OnFrameReadyToDisplayEventArgs();
+
                 args.frame = localFrame;
                 OnFrameReadyToDisplay(args);
             }
@@ -64,11 +64,6 @@ namespace FaceRec
                 //MessageBox.Show(ex.Message);
             }
         }
-    }
-
-    public class OnFrameReadyToDisplayEventArgs : EventArgs
-    {
-        public Mat frame { get; set; }
     }
 
 }

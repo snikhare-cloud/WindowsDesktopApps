@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="FrameCapturing.cs" />
     <Compile Include="FrameProcessing.cs" />
+    <Compile Include="OnFrameReadyToDisplayEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FaceRec.resx">
