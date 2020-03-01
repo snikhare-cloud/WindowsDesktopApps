@@ -24,10 +24,8 @@ namespace FaceRec
             InitializeComponent();
             //imageSequence = new Queue<Image<Bgr, byte>>();
         }
-
         private void CameraStartMenuItem_Click(object sender, EventArgs e)
         {
-
             frameProcessing = new FrameProcessing();
             frameCapturing = new FrameCapturing();
             frames = new ConcurrentQueue<Mat>();
@@ -35,7 +33,6 @@ namespace FaceRec
             frameCapturing.frameReadyToDisplay += WriteImageInDisplayBox;
             frameReadTH.Start();
         }
-
         private void CameraStopMenuItem_Click(object sender, EventArgs e)
         {
             if (frameCapturing != null)
@@ -43,106 +40,12 @@ namespace FaceRec
             if (frameReadTH != null)
                 frameReadTH.Abort();
         }
-
         private void DisplayStartMenuItem_Click(object sender, EventArgs e)
         {
             imageDisplayTH = new Thread(FrameDisplay);
             imageDisplayTH.Start();
         }
-        private void FrameDisplay()
-        {
-            try
-            {
-                while (true)
-                {
-                        Mat topFrame;
-                        while (frames.TryPeek(out topFrame)) ;
-                        if(topFrame!=null)
-                        CamInput.Image = topFrame.Bitmap;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        private void WriteImageInDisplayBox(object sender, OnFrameReadyToDisplayEventArgs e)
-        {
-            try
-            {
-                if (frames.Count >= 10)
-                {
-                    Mat topFrame;
-                    while (frames.TryDequeue(out topFrame)) ;
-                }
-                frames.Enqueue(e.frame);
 
-                //CamInput.Image = e.frame.Bitmap;
-                //imageSequence.Dequeue().Bitmap;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-        private void WriteDetectionsInDisplayBox(object sender, EventArgs e)
-        {
-            //while (true)
-            //{
-            //    using (Graphics g = CamInput.CreateGraphics())
-            //    {
-            //        // Draw new lines and...
-            //        // g.Draw(Pens.Red, latestPoint, e.Location);                    
-            //    }
-            //    //CamInput.Image. = FrameCapturing._Frame.ToImage<Bgr, byte>().Bitmap;
-            //    //imageSequence.Dequeue().Bitmap;
-            //}
-        }
-
-        private void DisplayStopMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (imageDisplayTH != null)
-                    imageDisplayTH.Abort();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        private async void FaceDetectionLoop()
-        {
-            Rectangle[] rectangles;
-            try
-            {
-                while (true)
-                {
-                    if (frames.Count > 0)
-                    {
-                        Mat topFrame;
-                        while (frames.TryPeek(out topFrame)) ;
-                        if (topFrame != null)
-                        {
-                            rectangles = await frameProcessing.DetectHaar(topFrame);
-                            if (rectangles.Length > 0)
-                            {
-                                using (Graphics g = CamInput.CreateGraphics())
-                                {
-                                    // Draw new lines and...
-                                    g.DrawRectangles(Pens.Red, rectangles);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         private async void faceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -169,15 +72,119 @@ namespace FaceRec
         {
 
         }
-
         private void lowerBodyToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
-
         private void smileToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+        private void FrameDisplay()
+        {
+            try
+            {
+                while (true)
+                {
+                    Mat topFrame;
+                    if (frames.TryPeek(out topFrame))
+                    {
+                        Bitmap localFrameBitmap = topFrame.Bitmap;
+                        CamInput.Image = localFrameBitmap;
+                        Thread.Sleep(10);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private void WriteImageInDisplayBox(object sender, OnFrameReadyToDisplayEventArgs e)
+        {
+            try
+            {
+                if (frames.Count >= 10)
+                {
+                    Mat topFrame;
+                    if (frames.TryDequeue(out topFrame))
+                    {
+                        frames.Enqueue(e.frame);
+                    }
+                }
+                else
+                {
+                    frames.Enqueue(e.frame);
+                }
+                //CamInput.Image = e.frame.Bitmap;
+                //imageSequence.Dequeue().Bitmap;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private void WriteDetectionsInDisplayBox(object sender, EventArgs e)
+        {
+            //while (true)
+            //{
+            //    using (Graphics g = CamInput.CreateGraphics())
+            //    {
+            //        // Draw new lines and...
+            //        // g.Draw(Pens.Red, latestPoint, e.Location);                    
+            //    }
+            //    //CamInput.Image. = FrameCapturing._Frame.ToImage<Bgr, byte>().Bitmap;
+            //    //imageSequence.Dequeue().Bitmap;
+            //}
+        }
+        private void DisplayStopMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (imageDisplayTH != null)
+                    imageDisplayTH.Abort();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private async void FaceDetectionLoop()
+        {
+            Rectangle[] rectangles;
+            try
+            {
+                while (true)
+                {
+                    if (frames.Count > 0)
+                    {
+                        Mat topFrame;
+                        if (frames.TryPeek(out topFrame))
+                        {
+                            //CamInput.Image = topFrame.Bitmap;
+
+                            rectangles = frameProcessing.DetectHaar(topFrame);
+
+
+                            //CamInput.Image = topFrame.Bitmap;
+
+                            if (rectangles.Length > 0)
+                            {
+                                using (Graphics g = CamInput.CreateGraphics())
+                                {
+                                    // Draw new lines and...
+                                    g.DrawRectangles(Pens.Red, rectangles);
+                                }
+                            }
+                        }
+                        Thread.Sleep(10);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //throw ex;
+            }
         }
     }
 }
